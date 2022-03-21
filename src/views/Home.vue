@@ -2,19 +2,19 @@
   <v-content>
     <v-main>
       <section>
-        <v-parallax :src="imageLink.sub_main" height="600">
+        <v-parallax :src="require('../assets/carthagocircle.png')" height="600">
           <v-layout column align-center justify-center class="white--text">
             <h1
               class="white--text mb-2 display-1 text-xs-center"
               style="font-weight: 900; text-shadow: 3px 2px #000000"
             >
-              Financial Freedom at Your Fingertips
+              Blockchain and Web3 Insight On Demand
             </h1>
             <div
               class="white--text subheading mb-3 text-xs-center"
               style="font-weight: 900; text-shadow: 2px 2px #000000"
             >
-              Learn, Invest, and Earn
+              Learn, Invest, and Grow
             </div>
             <v-btn
               class="blue lighten-2 mt-5"
@@ -32,10 +32,10 @@
           <v-flex xs12 sm4 class="my-3">
             <div class="text-center">
               <h2 class="headline">
-                A New Way to Explore Financial Opportunities
+                We Aim To Be The Biggest Repository of Blockchain Information.
               </h2>
               <span class="subheading">
-                No Upfront Cost, Experiment and Grow
+                Don't Get Bogged Down in the Surge of Knowledge
               </span>
             </div>
           </v-flex>
@@ -50,10 +50,10 @@
                       >
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">Learn About Investments</div>
+                      <div class="headline text-center">Learn About Blockchain and DeFi</div>
                     </v-card-title>
                     <v-card-text>
-                     Information #1
+                     We have a number of resources you can use to learn about blockchain and various investments pertaining to it. Never spend money again without being knowledgable.
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -65,10 +65,10 @@
                       >
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Simulate Portfolios</div>
+                      <div class="headline">Blockchain Guidance</div>
                     </v-card-title>
                     <v-card-text>
-                     Information #2
+                     Utilize our large repository of knowledge and experts to assist you with navigating NFT creation, Asset Development and Blockchain Integration for your projects. 
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -85,7 +85,7 @@
                       </div>
                     </v-card-title>
                     <v-card-text>
-                      Information #3
+                      When you contribute to the knowledge base of the platform you will earn Cothons, Carthago's standard asset built on the Algorand blockchain. 
                     </v-card-text>
                   </v-card>
                 </v-flex>
@@ -96,12 +96,12 @@
       </section>
 
       <section>
-        <v-parallax :src="imageLink.main" height="380">
+        <v-parallax :src="require('../assets/finance.jpeg')" height="380">
           <v-layout column align-center justify-center>
-            <div class="headline white--text mb-3 text-xs-center">
-              Carthago allows anyone to learn about investments and to create a portfolio before buying.
+            <div class="headline black--text mb-3 text-xs-center">
+              Carthago Educates and Provides First Hand Guidance for Blockchain Integration
             </div>
-            <em
+            <em class="black"
               >There's no need to risk your money before you know what you are doing.</em
             >
             <v-btn
@@ -123,14 +123,14 @@
               <div class="headline">Want updates for when the beta is ready?! Sign up for alerts.</div>
               <br />
               <div>
-                Being an early tester will have major perks in the future. Carthago is creating a new way to learn about crypto, stocks, investing, and financial freedom. 
+                Being an early tester will have major perks in the future. Carthago is creating a new way to learn about crypto, NFTs, DeFi, and Web3 App Development.
                 Signing up today ensures you are the first to access any future rewards, incentives, or offers. 
               </div>
             </v-flex>
             <v-flex xs8 offset-xs2>
               <v-card class="elevation-0 transparent">
                 <v-card-text>
-                  <v-flex xs12 v-if="!subscribed">
+                  <v-flex xs12>
                     <v-text-field
                       box
                       label="Email address"
@@ -140,25 +140,21 @@
                       persistent-hint
                     ></v-text-field>
                   </v-flex>
-                  <v-flex xs12 v-if="!subscribed">
+                  <v-flex xs12 >
                     <v-text-field
                       box
                       multi-line
                       label="Bio and Your Biggest Desire."
+                      v-model="bio"
                     ></v-text-field>
                   </v-flex>
-                  <v-flex xs12 class="text-xs-center" v-if="!subscribed">
+                  <v-flex xs12 class="text-xs-center">
                     <v-btn
                       class="blue lighten-2 mb-5"
                       dark
                       large
                       @click="subscribe"
                       >Get in touch</v-btn
-                    >
-                  </v-flex>
-                  <v-flex xs12 class="text-xs-center" v-if="subscribed">
-                    <v-btn class="green lighten-2 mb-5" dark large
-                      >Welcome on board!</v-btn
                     >
                   </v-flex>
                 </v-card-text>
@@ -169,21 +165,29 @@
       </section>
 
       <section>
-        <v-parallax :src="imageLink.social_cover" height="380">
+        <v-parallax :src="require('../assets/financeChart.jpeg')"  height="380">
           <v-layout column align-center justify-center>
             <div class="headline white--text mb-3 text-xs-center">
-              There's no easy way to financial independence, but we think we can help!
+              Be knowledgeable when it comes to Blockchain by using Carthago!
             </div>
           </v-layout>
           <v-layout justify-space-around justify-center>
-            <v-icon x-large dark>mdi-youtube</v-icon>
 
+            <a href="https://www.youtube.com/channel/UCLCzWezDeP6576nAC7s2aPw">
+            <v-icon x-large dark >mdi-youtube</v-icon>
+            </a>
+
+            <a href="https://www.youtube.com/channel/UCLCzWezDeP6576nAC7s2aPw">
             <v-icon x-large dark>mdi-instagram</v-icon>
+            </a>
 
+            <a href="https://medium.com/Carthago">
             <v-icon x-large dark>mdi-facebook</v-icon>
-
+            </a>
+            
+            <a href="https://discord.gg/8uGuQqJM2V">
             <v-icon x-large dark>mdi-discord</v-icon>
-
+            </a>
 
           </v-layout>
         </v-parallax>
@@ -229,47 +233,54 @@
 </template>
 
 <script>
+import db from "../firebase/firebaseInit";
+
 export default {
-  name: "Home",
-  data: function () {
-    return {
-      imageLink: {
-        main: "https://firebasestorage.googleapis.com/v0/b/endorfinevue.appspot.com/o/assets%2Fb13f0434-b228-11e6-8e5d-5252025056ab_web_scale_0.4666667_0.4666667__.jpg?alt=media&token=660df23e-599e-434b-9313-ba69c973eeea",
-        sub_main:
-          "https://firebasestorage.googleapis.com/v0/b/endorfinevue.appspot.com/o/assets%2FNight-Club-Clubbing-Jobs-Abroad2.jpg?alt=media&token=82bbda7d-5df4-430b-9217-adaf1c8485c5",
-        logo: "../assets/carthagocircle.png",
-        social_cover:
-          "https://firebasestorage.googleapis.com/v0/b/endorfinevue.appspot.com/o/assets%2Fo-NIGHTCLUB-facebook.jpg?alt=media&token=cefc5c4c-9714-41da-9c22-f63caf5e89a4",
-      },
-      email: "",
-      emailRules: [
-        (v) => {
-          return !!v || "E-mail is required";
-        },
-        (v) =>
-          /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
-          "E-mail must be valid",
+    name: "Home",
+    components: {
+   
+    },
+    data() {
+        return {
+            bio: "",
+            email: "",
+            error: "",
+            errorMsg: "",
+            valid: true,
+             nameRules: [
+        v => !!v || 'bio is required',
+        v => (v && v.length <= 10) || 'Bio must be more than 10 characters',
       ],
-      subscribed: false,
-    };
-  },
-  methods: {
-    subscribe: function () {
-      this.subscribed = !this.subscribed;
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+        };
     },
-  },
+    methods: {
+        async subscribe() {
+            if (
+                this.email !== "" &&
+                this.bio !== ""
+            ) 
+            {
+                this.error = false;
+                this.errorMsg = "";
 
-  computed: {
-    imgHeight: function () {
-      var offset = 320;
-      console.log("new image height is " + (this.pageHeight - offset));
-      return this.pageHeight - offset;
+
+                db.collection("subscribers").add({ bio: this.bio, email: this.email });
+                this.$router.push({name: 'Home'});
+                return;
+            }
+            this.error = true;
+            this.errorMsg = "Please fill out all fields!";
+        },
     },
-  },
-
-  mounted: function () {
-    this.calculateHeight();
-  },
+    computed: {
+        user() {
+      return this.$store.state.user;
+    },
+    },
 };
 </script>
 

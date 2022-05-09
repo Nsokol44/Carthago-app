@@ -24,6 +24,7 @@ export default new Vuex.Store({
     profileUsername: null,
     profileId: null,
     profileInitials: null,
+    contributor: null,
   },
   getters: {
     blogPostsFeed(state) {

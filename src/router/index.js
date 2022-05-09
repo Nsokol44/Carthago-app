@@ -1,19 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Crypto from "../views/Crypto.vue";
+import Data from "../views/Data.vue";
 import Contribute from "../views/Contribute.vue";
-import Learn from "../views/Learn.vue";
+import Articles from "../views/Articles.vue";
+import Analytics from "../views/Analytics.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import ForgotPassword from "../views/ForgotPassword.vue";
 import Profile from "../views/Profile.vue";
 import Admin from "../views/Admin.vue";
-import CreatePost from "../views/CreatePost.vue";
 import BlogPreview from "../views/BlogPreview.vue";
 import ViewBlog from "../views/ViewBlog.vue";
 import EditBlog from "../views/EditBlog.vue";
 import About from "../views/About.vue";
+import Learn from "../views/Learn.vue";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
@@ -30,11 +31,11 @@ const routes = [
         }
       },
     {
-        path: "/crypto",
-        name: "Crypto",
-        component: Crypto,
+        path: "/data",
+        name: "Data",
+        component: Data,
         meta: {
-          title: 'Crypto'
+          title: 'Data'
         }
       },
     {
@@ -42,15 +43,17 @@ const routes = [
         name: "Contribute",
         component: Contribute,
         meta: {
-          title: 'Contribute'
+          title: 'Contribute',
+          requiresAuth: true,
+          requiresAdmin: true,
         }
       },
     {
-        path: "/learn",
-        name: "Learn",
-        component: Learn,
+        path: "/articles",
+        name: "Articles",
+        component: Articles,
         meta: {
-          title: 'Learn'
+          title: 'Articles'
         }
       },
     {
@@ -104,16 +107,6 @@ const routes = [
         meta: {
           title: 'Admin',
           requiresAuth: true,
-          requiresAdmin: false,
-        }
-      },
-      {
-        path: "/create-post",
-        name: "CreatePost",
-        component: CreatePost,
-        meta: {
-          title: 'CreatePost',
-          requiresAuth: true,
           requiresAdmin: true,
         }
       },
@@ -144,6 +137,22 @@ const routes = [
           title: 'Edit Blog Post',
           requiresAuth: true,
           requiresAdmin: true,
+        }
+      },
+      {
+        path: "/analytics",
+        name: "Analytics",
+        component: Analytics,
+        meta: {
+          title: 'Analytics',
+        }
+      },
+      {
+        path: "/learn",
+        name: "Learn",
+        component: Learn,
+        meta: {
+          title: 'Learn',
         }
       },
 ];

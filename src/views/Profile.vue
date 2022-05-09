@@ -11,7 +11,7 @@
         <div class="initials">
           {{ $store.state.profileInitials }}
         </div>
-        <div class="admin-badge">
+        <div v-if="admin" class="admin-badge">
           <adminIcon class="icon" />
             <span>admin</span>
         </div>
@@ -85,12 +85,18 @@ export default {
               return this.$store.state.profileUsername;
           },
           set(payload) {
-              this.$store.commit("changeusername", payload);
+              this.$store.commit("changeUsername", payload);
           },
       },
       email() {
           return this.$store.state.profileEmail;
-      }
+      },
+      user() {
+            return this.$store.state.user;
+        },
+        admin() {
+            return this.$store.state.profileAdmin;
+        },
   }
 };
 </script>

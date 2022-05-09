@@ -1,9 +1,9 @@
 <template>
-    <v-footer class="brown darken-1">
+    <v-footer fixed class="brown darken-4">
       <img
         :src="require('../assets/carthagocircle.png')"
-        height="80px"
-        width="80px"
+        height="30px"
+        width="30px"
       />
       <v-layout row wrap align-center>
         <v-flex xs12 class="text-xs-center">

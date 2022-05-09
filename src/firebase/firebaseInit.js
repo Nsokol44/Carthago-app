@@ -11,6 +11,7 @@ import firebase from "firebase/compat/app";
 const firebaseConfig = {
   apiKey: "AIzaSyCYtr7Vy8HGOlBtDL5SLslH_q1m4sMA2g0",
   authDomain: "carthago-9b39a.firebaseapp.com",
+  databaseURL: "https://carthago-9b39a-default-rtdb.firebaseio.com",
   projectId: "carthago-9b39a",
   storageBucket: "carthago-9b39a.appspot.com",
   messagingSenderId: "413971305379",

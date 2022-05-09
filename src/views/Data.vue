@@ -1,14 +1,12 @@
 <template>
-  <v-content>
-    <v-main>
+
       <div>
-        <h2 class="text-center">Cryptocurrency Reports and Analysis</h2>
+        <h2 class="text-center">Carthago's Data Repository. Find any Data You need here.</h2>
         <div>
           <h3 class="text-center">Coming SOON!</h3>
         </div>
       </div>
-    </v-main>
-  </v-content>
+
 </template>
 
 <script>

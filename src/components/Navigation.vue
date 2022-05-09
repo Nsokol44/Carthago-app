@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar fixed dark>
+  <v-app-bar fixed dark app>
     <v-toolbar-side-icon class="logo"
       >
       <v-btn flat :to="{ name: 'Home'}" icon>
@@ -20,7 +20,8 @@
       <!--<v-btn raised :to="{name: 'Learn'}">Learn</v-btn> -->
       <v-btn raised v-if="admin" :to="{ name: 'Contribute'}">Contribute</v-btn>
       <!--<v-btn flat>Blog</v-btn>-->
-      <v-btn flat class="yellow darken-3" :to="{ name: 'Login'}">Sign In</v-btn>
+      <v-btn flat v-if="!user" class="yellow darken-3" :to="{ name: 'Login'}">Sign In</v-btn>
+      <v-btn flat v-if="user" class="yellow darken-3" @click="signOut">Sign Out</v-btn>
 
     </v-toolbar-items>
   
@@ -49,17 +50,29 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item>
-            <v-btn raised :to="{ name: 'Crypto' }">Crypto</v-btn>
+
+        <v-list-item v-if="user">
+            <v-btn raised :to="{ name: 'Profile'}">My Profile</v-btn>
+          </v-list-item>
+
+           <v-list-item>
+            <v-btn raised :to="{name: 'Articles'}">Articles</v-btn>
           </v-list-item>
 
           <v-list-item>
-            <v-btn raised :to="{name: 'Learn'}">Learn</v-btn>
+            <v-btn raised :to="{ name: 'Analytics'}">Analytics</v-btn>
           </v-list-item>
 
+          <v-list-item>
+            <v-btn raised :to="{ name: 'Data' }">Data</v-btn>
+          </v-list-item>
 
           <v-list-item>
-            <v-btn raised :to="{ name: 'About Us'}">About Us</v-btn>
+            <v-btn raised :to="{ name: 'Learn' }">Learn</v-btn>
+          </v-list-item>
+
+          <v-list-item>
+            <v-btn raised :to="{ name: 'About'}">About Us</v-btn>
           </v-list-item>
 
          
@@ -67,7 +80,7 @@
       </v-list>
           </v-menu>
 
-  </v-toolbar>
+  </v-app-bar >
   
 </template>
 

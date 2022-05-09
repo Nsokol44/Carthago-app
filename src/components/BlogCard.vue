@@ -1,29 +1,71 @@
 <template>
   <div class="blog-card">
-    <div v-show="editPost" class="icons">
-      <div @click="editBlog" class="icon">
-        <Edit class="edit" />
-      </div>
-      <div @click="deletePost" class="icon">
-        <Delete class="delete" />
-      </div>
-    </div>
-    <img
+    <v-card
+    class="mx-2 my-2"
+    max-width="350"
+    outlined
+  >
+    <v-img
+      class="black--text align-end"
+      height="200px"
       :src="post.blogCoverPhoto"
-      alt=""
-    />
-    <div class="info">
-      <h4>{{ post.blogTitle }}</h4>
-      <h6>Posted On: {{ new Date(post.blogDate).toLocaleString('en-us', {dateStyle: "long"}) }}</h6>
-      <router-link class="link" :to="{name: 'ViewBlog', params: {blogid: this.post.blogID}}">
-        View the Post <Arrow class="arrow" />
-      </router-link>
-    </div>
+    >
+      
+    </v-img>
+    <v-card-title class="text-sm-center">{{ post.blogTitle }}</v-card-title>
+    <v-card-subtitle class="pb-0">
+      Posted On: {{ new Date(post.blogDate).toLocaleString('en-us', {dateStyle: "long"}) }}
+    </v-card-subtitle>
+
+    <!--<v-card-text class="text--primary">
+      <div>Whitehaven Beach</div>
+
+      <div>Whitsunday Island, Whitsunday Islands</div>
+    </v-card-text>-->
+
+    <v-card-actions>
+      <v-btn
+        color="brown"
+        text
+      >
+        Share
+      </v-btn>
+
+      <v-btn
+        color="brown"
+        text
+        :to="{name: 'ViewBlog', params: {blogid: this.post.blogID}}"
+      >
+        Explore
+      </v-btn>
+
+      <v-btn
+      orange
+      text
+        v-show="editPost"
+        @click="editBlog">
+        <Edit  />
+        Edit
+        </v-btn>
+
+        <v-btn
+      orange
+      text
+        v-show="editPost"
+        @click="deletePost">
+        <Delete  />
+        Delete
+        </v-btn>
+
+    </v-card-actions>
+  </v-card>
+
+
   </div>
+
 </template>
 
 <script>
-import Arrow from "../assets/Icons/arrow-right-light.svg";
 import Edit from "../assets/Icons/edit-regular.svg";
 import Delete from "../assets/Icons/trash-regular.svg";
 
@@ -31,7 +73,6 @@ export default {
   name: "blogCard",
   props: ["post"],
   components: {
-    Arrow,
     Edit,
     Delete,
   },
@@ -112,7 +153,7 @@ export default {
     display: block;
     border-radius: 8px 8px 0 0;
     z-index: 1;
-    width: 100%;
+    width: 10%;
     min-height: 200px;
     object-fit: cover;
   }

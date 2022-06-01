@@ -1,7 +1,7 @@
 <template>
   <div class="blog-card">
     <v-card
-    class="mx-2 my-2"
+    class="mx-8 my-2"
     max-width="350"
     outlined
   >
@@ -10,7 +10,7 @@
       height="200px"
       :src="post.blogCoverPhoto"
     >
-      
+
     </v-img>
     <v-card-title class="text-sm-center">{{ post.blogTitle }}</v-card-title>
     <v-card-subtitle class="pb-0">
@@ -93,15 +93,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.v-card__text, .v-card__title {
+  word-break: normal !important;
+}
+
 .blog-card {
   position: relative;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border-radius: 8px;
-  background-color: white;
   min-height: 420px;
+  background-color: white;
   transition: 0.5s ease all;
+  margin: 10px;
 
   &:hover {
     transform: rotateZ(-1deg) scale(1.01);

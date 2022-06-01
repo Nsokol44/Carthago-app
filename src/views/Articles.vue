@@ -5,8 +5,8 @@
 <v-card-actions class="justify-center my-2">
  <v-btn raised color="primary" href="https://www.medium.com/carthago"> Take Me There </v-btn>
 </v-card-actions>
-   
- 
+
+
 
     <div class="blog-cards containter mx-3">
       <div class="toggle-edit" v-if="admin">
@@ -24,9 +24,9 @@
       />
       </v-row>
     </div>
-    
+
   </div>
-  
+
 </template>
 
 <script>

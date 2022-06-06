@@ -1,48 +1,120 @@
 <template>
-  <div class="contribute">
-    <BlogCoverPreview v-show="this.$store.state.blogPhotoPreview" />
-    <Loading v-show="loading"/>
-    <div class="container">
-      <div :class="{ invisible: !error }" class="err-message">
-        <p><span>Error:</span>{{ this.errorMsg }}</p>
-      </div>
-      <div class="blog-info">
-        <input type="text" placeholder="Enter Blog Title" v-model="blogTitle" />
-        <div class="upload-file">
-          <label for="blog-photo">Upload Cover Photo</label>
-          <input
-            type="file"
-            ref="blogPhoto"
-            id="blog-photo"
-            @change="fileChange"
-            accept=".png, .jpg, .jpeg"
-          />
-          <button
-            class="preview"
-            @click="openPreview"
-            :class="{ 'button-inactive': !this.$store.state.blogPhotoFileURL }"
-          >
-            Preview Photo
-          </button>
-          <span>File Chosen: {{ this.$store.state.blogPhotoName }}</span>
+  <v-expansion-panels popout>
+    <v-expansion-panel>
+      <v-expansion-panel-header> Article </v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <div class="contribute">
+          <BlogCoverPreview v-show="this.$store.state.blogPhotoPreview" />
+          <Loading v-show="loading" />
+          <div class="container">
+            <div :class="{ invisible: !error }" class="err-message">
+              <p><span>Error:</span>{{ this.errorMsg }}</p>
+            </div>
+            <div class="blog-info">
+              <input
+                type="text"
+                placeholder="Enter Blog Title"
+                v-model="blogTitle"
+              />
+              <div class="upload-file">
+                <label for="blog-photo">Upload Cover Photo</label>
+                <input
+                  type="file"
+                  ref="blogPhoto"
+                  id="blog-photo"
+                  @change="fileChange"
+                  accept=".png, .jpg, .jpeg"
+                />
+                <button
+                  class="preview"
+                  @click="openPreview"
+                  :class="{
+                    'button-inactive': !this.$store.state.blogPhotoFileURL,
+                  }"
+                >
+                  Preview Photo
+                </button>
+                <span>File Chosen: {{ this.$store.state.blogPhotoName }}</span>
+              </div>
+            </div>
+            <div class="editor">
+              <vue-editor
+                :editorOptions="editorSettings"
+                v-model="blogHTML"
+                useCustomImageHandler
+                @image-added="imageHandler"
+              />
+            </div>
+            <div class="blog-actions">
+              <button @click="uploadBlog">Publish Blog</button>
+              <router-link class="router-button" :to="{ name: 'BlogPreview' }"
+                >Post Preview</router-link
+              >
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="editor">
-        <vue-editor
-          :editorOptions="editorSettings"
-          v-model="blogHTML"
-          useCustomImageHandler
-          @image-added="imageHandler"
-        />
-      </div>
-      <div class="blog-actions">
-        <button @click="uploadBlog">Publish Blog</button>
-        <router-link class="router-button" :to="{ name: 'BlogPreview' }"
-          >Post Preview</router-link
-        >
-      </div>
-    </div>
-  </div>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+
+    <v-expansion-panel>
+      <v-expansion-panel-header> Learning Module </v-expansion-panel-header>
+      <v-expansion-panel-content>
+        <v-form v-model="valid">
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Learning Module Title"
+                  required
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field label="Authors" required></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field label="Link to Module" required></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Module Description/Overview"
+                  required
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  v-model="numberValue"
+                  hide-details
+                  single-line
+                  type="number"
+                  label="Price"
+                />
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-file-input truncate-length="15" label="Cover Photo"></v-file-input>
+                
+                />
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+
+    <v-expansion-panel>
+      <v-expansion-panel-header> Data </v-expansion-panel-header>
+      <v-expansion-panel-content> </v-expansion-panel-content>
+    </v-expansion-panel>
+
+    <v-expansion-panel>
+      <v-expansion-panel-header> Analytics </v-expansion-panel-header>
+      <v-expansion-panel-content> </v-expansion-panel-content>
+    </v-expansion-panel>
+  </v-expansion-panels>
 </template>
 
 <script>
@@ -107,34 +179,42 @@ export default {
     uploadBlog() {
       if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
         if (this.file) {
-            this.loading = true;
+          this.loading = true;
           const storageRef = firebase.storage().ref();
-          const docRef = storageRef.child(`documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`);
-          docRef.put(this.file).on("state_changed", (snapshot) => {
+          const docRef = storageRef.child(
+            `documents/BlogCoverPhotos/${this.$store.state.blogPhotoName}`
+          );
+          docRef.put(this.file).on(
+            "state_changed",
+            (snapshot) => {
               console.log(snapshot);
-          },
-          (err) => {
+            },
+            (err) => {
               //
               console.log(err);
               this.loading = false;
-          }, async () => {
+            },
+            async () => {
               const downloadURL = await docRef.getDownloadURL();
               const timestamp = await Date.now();
               const dataBase = await db.collection("blogPosts").doc();
 
               await dataBase.set({
-                  blogID: dataBase.id,
-                  blogHTML: this.blogHTML,
-                  blogCoverPhoto: downloadURL,
-                  blogCoverPhotoName: this.blogCoverPhotoName,
-                  blogTitle: this.blogTitle,
-                  profileId: this.profileId,
-                  date: timestamp,
+                blogID: dataBase.id,
+                blogHTML: this.blogHTML,
+                blogCoverPhoto: downloadURL,
+                blogCoverPhotoName: this.blogCoverPhotoName,
+                blogTitle: this.blogTitle,
+                profileId: this.profileId,
+                date: timestamp,
               });
               await this.$store.dispatch("getPost");
               this.loading = false;
-              this.$router.push({ name: "ViewBlog", params: {blogid: dataBase.id} });
-          }
+              this.$router.push({
+                name: "ViewBlog",
+                params: { blogid: dataBase.id },
+              });
+            }
           );
           return;
         }

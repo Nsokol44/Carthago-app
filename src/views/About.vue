@@ -41,10 +41,17 @@
         <v-list-item-title> Nicholas Sokol, PhD</v-list-item-title></v-btn>
         <v-list-item-subtitle>Founder - Climate, Energy, Data Science</v-list-item-subtitle>
         
-        
+          <v-btn transparent color="" href="https://www.linkedin.com/in/cristopher-herrera-urena-1608411b7/">
+        <v-list-item-title> Cris Herrera </v-list-item-title></v-btn>
+        <v-list-item-subtitle>Co-Founder, Web Developer</v-list-item-subtitle>
+
+         <v-btn transparent color="" href="https://www.linkedin.com/in/michellej-newyork/">
+        <v-list-item-title> Michelle Javed </v-list-item-title></v-btn>
+        <v-list-item-subtitle>Co-Founder, Marketing</v-list-item-subtitle>
+
         <v-btn transparent color="" href="https://www.linkedin.com/in/olusegun-joel-titus-3622b8b0/">
         <v-list-item-title> Olusegun Joel Titus</v-list-item-title></v-btn>
-        <v-list-item-subtitle>Contributor - Writer, Blockchain, Analyst</v-list-item-subtitle>
+        <v-list-item-subtitle>Lead Contributor - Writer, Blockchain, Analyst</v-list-item-subtitle>
 
          <v-btn transparent color="" href="https://www.linkedin.com/in/deshayk/">
         <v-list-item-title> DeShay K</v-list-item-title></v-btn>
@@ -54,25 +61,11 @@
         <v-list-item-title> Will Stansill</v-list-item-title></v-btn>
         <v-list-item-subtitle>Contributor - Blockchain Developer, Writer, and Researcher</v-list-item-subtitle>
 
-
-
          <v-btn transparent color="" href="https://www.linkedin.com/in/katherine-aldama-5165a3227/">
         <v-list-item-title> Katherine Aldama</v-list-item-title></v-btn>
         <v-list-item-subtitle>Blockchain Writer</v-list-item-subtitle>
 
-         <v-btn transparent color="" href="https://www.linkedin.com/in/michelle-acevedo-callejas-71bba688/">
-        <v-list-item-title> Michelle Acevedo Callejas</v-list-item-title></v-btn>
-        <v-list-item-subtitle>Blockchain Writer</v-list-item-subtitle>
-
-         <v-btn transparent color="" href="https://www.linkedin.com/in/keylameregildo/">
-        <v-list-item-title> Keyla Meregildo</v-list-item-title></v-btn>
-        <v-list-item-subtitle>Blockchain Writer</v-list-item-subtitle>
-
-         <v-btn transparent color="" href="https://www.linkedin.com/in/ratna-suthar-phd-40458271/">
-        <v-list-item-title> Ratna Suthar, PhD</v-list-item-title></v-btn>
-        <v-list-item-subtitle>Blockchain Writer - Environmental Engineer, Writer, Educator</v-list-item-subtitle>
-
-
+      
 
 
       </v-list-item-content>

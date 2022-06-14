@@ -90,14 +90,12 @@
                   hide-details
                   single-line
                   type="number"
-                  label="Price"
-                />
+                  label="Price"/>
               </v-col>
 
               <v-col cols="12" md="4">
                 <v-file-input truncate-length="15" label="Cover Photo"></v-file-input>
                 
-                />
               </v-col>
             </v-row>
           </v-container>

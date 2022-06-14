@@ -9,6 +9,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     blogPosts: [],
+    learnModules: [],
     postLoaded: null,
     blogHTML: "Write your blog post here.",
     blogTitle: "",
@@ -24,7 +25,11 @@ export default new Vuex.Store({
     profileUsername: null,
     profileId: null,
     profileInitials: null,
-    contributor: null,
+    learnTitle: "",
+    learnPhoto: "",
+    learnPhotoFileURL: null,
+    learnAuthor: "",
+    learnLink: ""
   },
   getters: {
     blogPostsFeed(state) {
@@ -35,6 +40,9 @@ export default new Vuex.Store({
     },
     blogPostsAll(state){
       return state.blogPosts;
+    },
+    learnModulesAll(state){
+      return state.learnModules;
     },
   },
   mutations: {
@@ -64,6 +72,19 @@ export default new Vuex.Store({
     },
     filterBlogPost(state, payload) {
       state.blogPosts = state.blogPosts.filter(post => post.blogID !== payload);
+    },
+    setLearnState(state, payload) {
+      state.learnTitle = payload.learnTitle;
+      state.learnPhoto = payload.learnPhoto;
+      state.learnPhotoFileURL = payload.learnCoverPhoto;
+      state.learnPhotoName = payload.learnCoverPhotoName;
+      state.learnAuthor = payload.learnAuthor;
+    },
+    newLearnModule(state, payload){
+      state.learnLink = payload;
+    },
+    updateLearnTitle(state, payload) {
+      state.learnTitle = payload;
     },
     updateUser(state, payload) {
       state.user = payload;

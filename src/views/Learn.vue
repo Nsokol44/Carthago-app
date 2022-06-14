@@ -4,13 +4,11 @@
       <div>
 
         <!--  Title   -->
-        <h1 class="text-center" style="padding:50px">Learning Modules</h1>
+        <h1 class="text-center" style="padding:10px">Learning Modules</h1>
 
         <!-- Cards (Content) -->
           <div class="blog-cards ">
-            <div class="toggle-edit" v-if="admin">
-              <span>Toggle Editing</span>
-            </div>
+           
 
             <v-container>
             <v-row
@@ -19,7 +17,7 @@
             >
               <BlogCard
                   :post="post"
-                  v-for="(post, index) in blogPostsAll"
+                  v-for="(post, index) in learnModulesAll"
                   :key="index"
               />
             </v-row>

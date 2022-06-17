@@ -160,6 +160,40 @@ export default new Vuex.Store({
       await getPost.delete();
       commit('filterBlogPost', payload);
     },
+    //This is the store function for the dataset
+    async getData({ state }) {
+      const dataBase = await db.collection('foundData').orderBy('date', 'desc');
+      const dbResults = await dataBase.get();
+      dbResults.forEach((doc) => {
+        if (!state.foundData.some(post => post.dataID === doc.id)) {
+          const founddata = {
+            dataID: doc.data().dataID,
+            dataName: doc.data().dataName,
+            dataAuthor: doc.data().dataAuthor,
+            dataLink: doc.data().dataLink,
+            dataDescription: doc.data().dataDescription,
+            dataPrice: doc.data().dataPrice,
+            dataCategory: doc.data().dataCategory,
+            dataVariables: doc.data().dataVariables,
+            dataUse: doc.data().dataUse,
+            dataPhoto: doc.data().dataPhoto,
+            dataDate: doc.data().date,
+          };
+          state.blogPosts.push(founddata);
+        }
+      });
+      state.postLoaded = true;
+    },
+    async updateData({commit, dispatch}, payload) {
+      commit('filterData', payload);
+      await dispatch("getData");
+    },
+    async deleteData({commit}, payload) {
+      const getData = await db.collection('foundData').doc(payload);
+      await getData.delete();
+      commit('filterData', payload);
+    },
+
   },
   modules: {
   }

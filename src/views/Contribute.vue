@@ -59,7 +59,7 @@
     <v-expansion-panel>
       <v-expansion-panel-header> Learning Module </v-expansion-panel-header>
       <v-expansion-panel-content>
-        <v-form v-model="valid">
+        <v-form>
           <v-container>
             <v-row>
               <v-col cols="12" md="4">
@@ -90,12 +90,16 @@
                   hide-details
                   single-line
                   type="number"
-                  label="Price"/>
+                  label="Price"
+                  ref="dataPrice"
+                />
               </v-col>
 
               <v-col cols="12" md="4">
-                <v-file-input truncate-length="15" label="Cover Photo"></v-file-input>
-                
+                <v-file-input
+                  truncate-length="15"
+                  label="Cover Photo"
+                ></v-file-input>
               </v-col>
             </v-row>
           </v-container>
@@ -105,7 +109,88 @@
 
     <v-expansion-panel>
       <v-expansion-panel-header> Data </v-expansion-panel-header>
-      <v-expansion-panel-content> </v-expansion-panel-content>
+      <v-expansion-panel-content>
+        <v-form>
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Dataset Name"
+                  required
+                  v-model="dataName"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Organization"
+                  required
+                  v-model="dataAuthor"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Link to Dataset"
+                  required
+                  v-model="dataLink"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Data Description/Overview"
+                  required
+                  v-model="dataDescription"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Category"
+                  required
+                  v-model="dataCategory"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Variables"
+                  required
+                  v-model="dataVariables"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  label="Use Case"
+                  required
+                  v-model="dataUse"
+                ></v-text-field>
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-text-field
+                  v-model="numberValue"
+                  hide-details
+                  single-line
+                  type="number"
+                  label="Price"
+                />
+              </v-col>
+
+              <v-col cols="12" md="4">
+                <v-file-input
+                  truncate-length="15"
+                  label="Visualization"
+                  v-model="dataPhoto"
+                ></v-file-input>
+              </v-col>
+            </v-row>
+            <v-btn color="brown" @click="uploadData">Upload Data</v-btn>
+          </v-container>
+        </v-form>
+      </v-expansion-panel-content>
     </v-expansion-panel>
 
     <v-expansion-panel>
@@ -131,6 +216,15 @@ export default {
   name: "Contribute",
   data() {
     return {
+      dataName: null, 
+      dataAuthor: null,
+      dataLink: null,
+      dataDescription: null,
+      numberValue: null,
+      dataCategory: null,
+      dataVariables: null,
+      dataUse: null,
+      dataPhoto: null,
       file: null,
       error: null,
       errorMsg: null,
@@ -174,6 +268,7 @@ export default {
         }
       );
     },
+    // This is the function for uploading blogs to the backend.
     uploadBlog() {
       if (this.blogTitle.length !== 0 && this.blogHTML.length !== 0) {
         if (this.file) {
@@ -225,6 +320,60 @@ export default {
       }
       this.error = true;
       this.errorMsg = "Please ensure blog title and post have been filled!";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
+      return;
+    },
+    //This is the function for uploading data to the backend. 
+    uploadData() {
+      if (this.dataName.length !== 0 && this.dataDescription.length !== 0) {
+        if (this.file) {
+          this.loading = true;
+          const storageRef = firebase.storage().ref();
+          const docRef = storageRef.child(
+            `documents/dataPhotos/${this.$store.state.dataPhotoName}`
+          );
+          docRef.put(this.file).on(
+            "state_changed",
+            (snapshot) => {
+              console.log(snapshot);
+            },
+            (err) => {
+              //
+              console.log(err);
+              this.loading = false;
+            },
+            async () => {
+              const timestamp = await Date.now();
+              const dataBase = await db.collection("foundData").doc();
+
+              await dataBase.set({
+                dataID: dataBase.id,
+                dataName: this.dataName,
+                dataAuthor: this.dataAuthor,
+                dataLink: this.dataLink,
+                dataDescription: this.dataDescription,
+                dataPrice: this.dataPrice,
+                dataCategory: this.dataCategory,
+                dataVariables: this.dataVariables,
+                dataUse: this.dataUse,
+                dataPhoto: this.dataPhoto,
+                date: timestamp,
+              });
+              await this.$store.dispatch("getData");
+              this.loading = false;
+              this.$router.push({
+                name: "Home",
+              });
+            }
+          );
+          return;
+        }
+
+      }
+      this.error = true;
+      this.errorMsg = "Please ensure data name and description have been filled!";
       setTimeout(() => {
         this.error = false;
       }, 5000);
